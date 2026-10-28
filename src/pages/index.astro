@@ -1,37 +1,95 @@
 ---
+const services = [
+  {
+    number: "01",
+    title: "个人主页",
+    desc: "让个人介绍、专业技能与联系方式拥有清晰、专业的展示空间。",
+    tags: ["个人介绍", "响应式设计"],
+  },
+  {
+    number: "02",
+    title: "项目作品集",
+    desc: "展示竞赛经历、技术项目与作品成果，让你的能力更直观。",
+    tags: ["项目展示", "经历梳理"],
+  },
+  {
+    number: "03",
+    title: "产品展示页",
+    desc: "围绕产品价值设计页面，让访客快速理解你的产品与服务。",
+    tags: ["产品介绍", "品牌展示"],
+  },
+];
+
 const projects = [
   {
     number: "01",
-    category: "PERSONAL WEBSITE",
+    category: "PERSONAL PORTFOLIO",
     title: "个人作品集",
-    description: "用简洁的设计呈现个人经历、技术能力与代表作品。",
-    tags: ["个人主页", "响应式设计"],
-    color: "purple",
+    desc: "用一个网站展示个人经历、专业技能与代表项目。",
+    style: "purple",
   },
   {
     number: "02",
     category: "BRAND WEBSITE",
     title: "品牌展示网站",
-    description: "通过清晰的内容结构与视觉设计，建立专业的品牌形象。",
-    tags: ["品牌展示", "视觉设计"],
-    color: "blue",
+    desc: "通过清晰的信息结构，建立专业、统一的品牌形象。",
+    style: "blue",
   },
   {
     number: "03",
-    category: "LANDING PAGE",
+    category: "PRODUCT LANDING PAGE",
     title: "产品介绍页面",
-    description: "聚焦产品核心卖点，让访客快速了解产品价值。",
-    tags: ["产品展示", "落地页"],
-    color: "green",
+    desc: "突出产品核心卖点，帮助访客快速了解产品价值。",
+    style: "green",
   },
 ];
 
-const skills = [
-  { name: "Astro", level: "静态网站构建" },
-  { name: "HTML / CSS", level: "页面结构与视觉设计" },
-  { name: "JavaScript", level: "交互功能开发" },
-  { name: "Git", level: "代码版本管理" },
-  { name: "Deployment", level: "网站部署与上线" },
+const plans = [
+  {
+    name: "基础主页",
+    price: "99",
+    desc: "适合希望拥有个人展示页面的你",
+    features: [
+      "单页个人主页",
+      "个人信息展示",
+      "基础视觉设计",
+      "手机端适配",
+    ],
+    featured: false,
+  },
+  {
+    name: "个人作品集",
+    price: "199",
+    desc: "适合学生、求职者与技术创作者",
+    features: [
+      "个人介绍与技能展示",
+      "项目作品展示",
+      "联系方式展示",
+      "响应式页面设计",
+      "协助部署上线",
+    ],
+    featured: true,
+  },
+  {
+    name: "定制展示网站",
+    price: "299",
+    desc: "适合有个性化展示需求的用户",
+    features: [
+      "根据需求调整设计",
+      "自定义展示模块",
+      "个性化视觉呈现",
+      "手机端适配",
+      "协助部署上线",
+    ],
+    featured: false,
+  },
+];
+
+const steps = [
+  { number: "01", title: "需求沟通", desc: "了解你想展示的内容与目标。" },
+  { number: "02", title: "确认方案", desc: "确定页面结构、风格与报价。" },
+  { number: "03", title: "网站制作", desc: "完成页面设计、开发与调整。" },
+  { number: "04", title: "测试部署", desc: "检查页面效果并协助上线。" },
 ];
 ---
 
@@ -39,875 +97,2234 @@ const skills = [
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="个人网站作品集，展示网页设计、前端开发和网站部署服务。"
+      content="为大学生、求职者与个人创作者提供个人主页、作品集和产品展示网站制作服务。"
     />
-    <meta name="theme-color" content="#09090b" />
-    <title>个人作品集 | 将想法变成现实</title>
-    <style>
-      :root {
-        color-scheme: dark;
-        --bg: #09090b;
-        --surface: #111114;
-        --text: #f4f4f5;
-        --muted: #a1a1aa;
-        --line: rgba(255, 255, 255, 0.1);
-        --accent: #a78bfa;
-        --max-width: 1120px;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-        scroll-padding-top: 90px;
-      }
-
-      body {
-        margin: 0;
-        background:
-          radial-gradient(
-            ellipse at 50% -20%,
-            rgba(124, 58, 237, 0.18),
-            transparent 55%
-          ),
-          var(--bg);
-        color: var(--text);
-        font-family:
-          Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
-        line-height: 1.7;
-        -webkit-font-smoothing: antialiased;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      button,
-      a {
-        -webkit-tap-highlight-color: transparent;
-      }
-
-      .container {
-        width: min(var(--max-width), calc(100% - 48px));
-        margin: 0 auto;
-      }
-
-      .nav {
-        position: sticky;
-        z-index: 10;
-        top: 0;
-        border-bottom: 1px solid var(--line);
-        background: rgba(9, 9, 11, 0.82);
-        backdrop-filter: blur(18px);
-      }
-
-      .nav-inner {
-        display: flex;
-        height: 72px;
-        align-items: center;
-        justify-content: space-between;
-        gap: 24px;
-      }
-
-      .brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 17px;
-        font-weight: 800;
-        letter-spacing: -0.5px;
-      }
-
-      .brand-icon {
-        display: grid;
-        width: 34px;
-        height: 34px;
-        place-items: center;
-        border: 1px solid rgba(167, 139, 250, 0.4);
-        border-radius: 11px;
-        background: rgba(139, 92, 246, 0.15);
-        color: #c4b5fd;
-      }
-
-      .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 30px;
-        color: var(--muted);
-        font-size: 13px;
-      }
-
-      .nav-links a {
-        transition: color 0.2s;
-      }
-
-      .nav-links a:hover {
-        color: white;
-      }
-
-      .nav-cta {
-        padding: 9px 15px;
-        border: 1px solid var(--line);
-        border-radius: 10px;
-        color: var(--text) !important;
-      }
-
-      .hero {
-        position: relative;
-        padding: 112px 0 100px;
-      }
-
-      .hero::before {
-        position: absolute;
-        z-index: -1;
-        top: 40px;
-        left: 50%;
-        width: min(700px, 100%);
-        height: 400px;
-        background-image: radial-gradient(
-          rgba(167, 139, 250, 0.16) 1px,
-          transparent 1px
-        );
-        background-size: 24px 24px;
-        content: "";
-        mask-image: linear-gradient(to bottom, black, transparent);
-        transform: translateX(-50%);
-        pointer-events: none;
-      }
-
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 9px;
-        padding: 7px 12px;
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.035);
-        color: #d4d4d8;
-        font-size: 12px;
-      }
-
-      .status-dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: #86efac;
-        box-shadow: 0 0 12px rgba(134, 239, 172, 0.7);
-      }
-
-      h1 {
-        max-width: 850px;
-        margin: 30px 0 22px;
-        font-size: clamp(42px, 7vw, 76px);
-        font-weight: 800;
-        letter-spacing: -3px;
-        line-height: 1.16;
-      }
-
-      .gradient-text {
-        background: linear-gradient(100deg, #c4b5fd, #818cf8 55%, #67e8f9);
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .hero-description {
-        max-width: 620px;
-        margin: 0;
-        color: var(--muted);
-        font-size: 16px;
-        line-height: 2;
-      }
-
-      .hero-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 13px;
-        margin-top: 34px;
-      }
-
-      .button {
-        display: inline-flex;
-        min-height: 46px;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 0 20px;
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        font-size: 13px;
-        font-weight: 700;
-        transition:
-          transform 0.2s,
-          border-color 0.2s,
-          background 0.2s;
-      }
-
-      .button:hover {
-        transform: translateY(-2px);
-      }
-
-      .button-primary {
-        border-color: transparent;
-        background: #f4f4f5;
-        color: #18181b;
-      }
-
-      .button-primary:hover {
-        background: #ddd6fe;
-      }
-
-      .button-secondary:hover {
-        border-color: rgba(167, 139, 250, 0.5);
-        background: rgba(167, 139, 250, 0.08);
-      }
-
-      .hero-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 24px;
-        margin-top: 50px;
-        color: var(--muted);
-        font-size: 12px;
-      }
-
-      .hero-meta span::before {
-        margin-right: 8px;
-        color: #a78bfa;
-        content: "✳";
-      }
-
-      .section {
-        padding: 76px 0;
-        border-top: 1px solid var(--line);
-      }
-
-      .section-heading {
-        display: flex;
-        align-items: end;
-        justify-content: space-between;
-        gap: 24px;
-        margin-bottom: 32px;
-      }
-
-      .section-kicker {
-        margin: 0 0 8px;
-        color: #a78bfa;
-        font-size: 11px;
-        font-weight: 800;
-        letter-spacing: 2px;
-      }
-
-      h2 {
-        margin: 0;
-        font-size: clamp(27px, 4vw, 38px);
-        letter-spacing: -1px;
-        line-height: 1.3;
-      }
-
-      .section-note {
-        max-width: 350px;
-        margin: 0;
-        color: var(--muted);
-        font-size: 13px;
-      }
-
-      .project-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-      }
-
-      .project-card {
-        overflow: hidden;
-        border: 1px solid var(--line);
-        border-radius: 17px;
-        background: rgba(255, 255, 255, 0.025);
-        transition:
-          transform 0.25s,
-          border-color 0.25s,
-          background 0.25s;
-      }
-
-      .project-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(167, 139, 250, 0.45);
-        background: rgba(255, 255, 255, 0.045);
-      }
-
-      .project-visual {
-        display: grid;
-        min-height: 190px;
-        place-items: center;
-        padding: 25px;
-        background:
-          radial-gradient(
-            circle at 50% 50%,
-            var(--glow),
-            transparent 68%
-          ),
-          #17171c;
-      }
-
-      .project-visual.purple {
-        --glow: rgba(139, 92, 246, 0.3);
-      }
-
-      .project-visual.blue {
-        --glow: rgba(59, 130, 246, 0.28);
-      }
-
-      .project-visual.green {
-        --glow: rgba(16, 185, 129, 0.23);
-      }
-
-      .mock-window {
-        width: 100%;
-        max-width: 260px;
-        overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        border-radius: 9px;
-        background: rgba(10, 10, 14, 0.92);
-        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
-        transform: rotate(-2deg);
-        transition: transform 0.3s;
-      }
-
-      .project-card:hover .mock-window {
-        transform: rotate(0) scale(1.025);
-      }
-
-      .mock-top {
-        display: flex;
-        gap: 4px;
-        padding: 9px;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .mock-top i {
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        background: #71717a;
-      }
-
-      .mock-content {
-        padding: 17px;
-      }
-
-      .mock-label {
-        color: #a78bfa;
-        font-size: 8px;
-        letter-spacing: 1px;
-      }
-
-      .mock-title {
-        margin-top: 8px;
-        font-size: 19px;
-        font-weight: 800;
-        line-height: 1.4;
-      }
-
-      .mock-line {
-        width: 80%;
-        height: 4px;
-        margin-top: 9px;
-        border-radius: 99px;
-        background: #3f3f46;
-      }
-
-      .mock-line.short {
-        width: 48%;
-        margin-top: 5px;
-      }
-
-      .project-body {
-        padding: 22px;
-      }
-
-      .project-category {
-        color: var(--muted);
-        font-size: 10px;
-        letter-spacing: 1.2px;
-      }
-
-      .project-body h3 {
-        margin: 10px 0;
-        font-size: 20px;
-      }
-
-      .project-body p {
-        min-height: 50px;
-        margin: 0;
-        color: var(--muted);
-        font-size: 12px;
-        line-height: 1.9;
-      }
-
-      .tag-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 7px;
-        margin-top: 19px;
-      }
-
-      .tag {
-        padding: 5px 9px;
-        border: 1px solid var(--line);
-        border-radius: 7px;
-        color: #d4d4d8;
-        font-size: 10px;
-      }
-
-      .demo-notice {
-        margin-top: 18px;
-        color: #71717a;
-        font-size: 11px;
-      }
-
-      .about-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 50px;
-      }
-
-      .about-copy {
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 2;
-      }
-
-      .about-copy strong {
-        color: var(--text);
-      }
-
-      .skill-list {
-        display: grid;
-        gap: 0;
-      }
-
-      .skill-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 17px 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .skill-name {
-        font-size: 13px;
-        font-weight: 700;
-      }
-
-      .skill-level {
-        color: var(--muted);
-        font-size: 11px;
-        text-align: right;
-      }
-
-      .service-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .service-card {
-        padding: 25px;
-        border: 1px solid var(--line);
-        border-radius: 15px;
-        background: rgba(255, 255, 255, 0.025);
-      }
-
-      .service-number {
-        color: #a78bfa;
-        font-size: 12px;
-        font-weight: 800;
-      }
-
-      .service-card h3 {
-        margin: 20px 0 10px;
-        font-size: 17px;
-      }
-
-      .service-card p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 12px;
-        line-height: 1.9;
-      }
-
-      .contact-panel {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 30px;
-        padding: 42px;
-        border: 1px solid rgba(167, 139, 250, 0.25);
-        border-radius: 20px;
-        background:
-          radial-gradient(
-            ellipse at 100% 0,
-            rgba(139, 92, 246, 0.17),
-            transparent 55%
-          ),
-          #111114;
-      }
-
-      .contact-panel p {
-        max-width: 500px;
-        margin: 13px 0 0;
-        color: var(--muted);
-        font-size: 13px;
-      }
-
-      footer {
-        padding: 27px 0;
-        border-top: 1px solid var(--line);
-        color: var(--muted);
-        font-size: 11px;
-      }
-
-      .footer-inner {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-      }
-
-      @media (max-width: 800px) {
-        .nav-inner {
-          height: 64px;
-        }
-
-        .nav-links {
-          gap: 15px;
-        }
-
-        .nav-links a:not(.nav-cta) {
-          display: none;
-        }
-
-        .hero {
-          padding: 85px 0 70px;
-        }
-
-        .project-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .project-card:last-child {
-          grid-column: 1 / -1;
-        }
-
-        .about-grid {
-          grid-template-columns: 1fr;
-          gap: 28px;
-        }
-
-        .service-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .contact-panel {
-          align-items: flex-start;
-          flex-direction: column;
-          padding: 28px;
-        }
-      }
-
-      @media (max-width: 520px) {
-        .container {
-          width: calc(100% - 32px);
-        }
-
-        .brand {
-          font-size: 15px;
-        }
-
-        .nav-cta {
-          padding: 8px 10px;
-          font-size: 11px;
-        }
-
-        h1 {
-          font-size: 43px;
-          letter-spacing: -2px;
-        }
-
-        .hero-description {
-          font-size: 14px;
-        }
-
-        .hero-meta {
-          gap: 12px;
-          margin-top: 35px;
-        }
-
-        .section {
-          padding: 58px 0;
-        }
-
-        .section-heading {
-          align-items: flex-start;
-          flex-direction: column;
-          gap: 12px;
-        }
-
-        .project-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .project-card:last-child {
-          grid-column: auto;
-        }
-
-        .project-visual {
-          min-height: 180px;
-        }
-
-        .skill-item {
-          align-items: flex-start;
-          flex-direction: column;
-          gap: 4px;
-        }
-
-        .skill-level {
-          text-align: left;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-          scroll-behavior: auto !important;
-          transition-duration: 0.01ms !important;
-        }
-      }
-    </style>
+    <meta name="theme-color" content="#0b0b10" />
+    <title>造站实验室 | 让你的想法拥有自己的网页</title>
   </head>
 
   <body>
-    <header class="nav">
-      <nav class="container nav-inner" aria-label="主导航">
-        <a class="brand" href="#home" aria-label="返回首页">
-          <span class="brand-icon">✳</span>
-          <span>DEV<span class="gradient-text">SPACE</span></span>
-        </a>
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="造站实验室首页">
+        <span class="brand-icon">Z</span>
+        <span>造站实验室<span class="brand-dot">.</span></span>
+      </a>
 
-        <div class="nav-links">
-          <a href="#projects">作品展示</a>
-          <a href="#about">关于我</a>
-          <a href="#services">服务介绍</a>
-          <a class="nav-cta" href="#contact">联系我 ↗</a>
-        </div>
+      <nav class="nav">
+        <a href="#services">服务介绍</a>
+        <a href="#projects">作品案例</a>
+        <a href="#pricing">价格方案</a>
+        <a href="#process">制作流程</a>
       </nav>
+
+      <a class="nav-cta" href="#contact">
+        咨询制作 <span aria-hidden="true">↗</span>
+      </a>
     </header>
 
     <main>
-      <section class="hero container" id="home">
-        <div class="eyebrow">
-          <span class="status-dot"></span>
-          个人网站开发 · 作品集展示
+      <section class="hero section-wrap" id="home">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="status-dot"></span>
+            PERSONAL WEBSITE STUDIO
+          </div>
+
+          <h1>
+            让你的想法，<br />
+            拥有一个<span class="gradient-text">真正属于</span><br />
+            自己的网站<span class="gradient-text">.</span>
+          </h1>
+
+          <p class="hero-desc">
+            为大学生、求职者与个人创作者制作精致的个人主页、作品集与产品展示网站。
+            把你的经历与想法，变成可以分享给全世界的网页。
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">
+              查看作品案例 <span aria-hidden="true">↗</span>
+            </a>
+            <a class="button button-secondary" href="#pricing">
+              了解服务价格 <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+
+          <div class="hero-note">
+            <span class="check">✓</span> 响应式页面设计
+            <span class="note-separator">/</span>
+            <span class="check">✓</span> 个性化视觉呈现
+            <span class="note-separator">/</span>
+            <span class="check">✓</span> 协助部署上线
+          </div>
         </div>
 
-        <h1>
-          把想法，<br />
-          <span class="gradient-text">变成真正可用的网站。</span>
-        </h1>
+        <div class="hero-visual" aria-label="个人网站界面示意图">
+          <div class="visual-glow"></div>
+          <div class="browser-window">
+            <div class="browser-bar">
+              <div class="browser-dots">
+                <i></i><i></i><i></i>
+              </div>
+              <div class="browser-address">your-portfolio.dev</div>
+              <span class="browser-menu">•••</span>
+            </div>
 
-        <p class="hero-description">
-          专注于简洁、现代、响应式的网站设计与开发。<br />
-          从个人主页到产品展示页面，让每一个想法都有自己的网络空间。
-        </p>
+            <div class="mock-page">
+              <div class="mock-nav">
+                <span class="mock-logo">PORTFOLIO.</span>
+                <span class="mock-links">ABOUT　 WORK　 CONTACT</span>
+              </div>
 
-        <div class="hero-actions">
-          <a class="button button-primary" href="#projects">
-            查看演示作品 <span>↘</span>
-          </a>
-          <a class="button button-secondary" href="#contact">
-            了解建站服务 <span>↗</span>
-          </a>
-        </div>
+              <div class="mock-content">
+                <span class="mock-label">HELLO, WORLD!</span>
+                <div class="mock-heading">
+                  Build your<br />
+                  <span>own story.</span>
+                </div>
+                <div class="mock-line"></div>
+                <p>Ideas, projects and everything about me.</p>
+                <div class="mock-button">EXPLORE MY WORK ↗</div>
+              </div>
 
-        <div class="hero-meta">
-          <span>响应式网页设计</span>
-          <span>现代前端技术</span>
-          <span>网站部署上线</span>
+              <div class="mock-orb orb-one"></div>
+              <div class="mock-orb orb-two"></div>
+              <div class="mock-footer">
+                <span>DESIGN · DEVELOP · CREATE</span>
+                <span>01 / 03</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="float-card float-card-top">
+            <span class="float-icon purple-icon">✳</span>
+            <span><strong>专属设计</strong><small>为你的需求量身打造</small></span>
+          </div>
+
+          <div class="float-card float-card-bottom">
+            <span class="float-icon green-icon">↗</span>
+            <span><strong>随时分享</strong><small>一个链接展示你的作品</small></span>
+          </div>
+
+          <div class="visual-caption">YOUR IDEAS. YOUR SPACE.</div>
         </div>
       </section>
 
-      <section class="section" id="projects">
-        <div class="container">
+      <section class="trust-strip">
+        <div class="section-wrap trust-inner">
+          <span>从想法到网页</span>
+          <span class="trust-divider">✳</span>
+          <span>从作品到展示</span>
+          <span class="trust-divider">✳</span>
+          <span>从设计到上线</span>
+          <span class="trust-divider">✳</span>
+          <span>让每份努力被看见</span>
+        </div>
+      </section>
+
+      <section class="section-wrap section-block" id="services">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">WHAT WE BUILD</div>
+            <h2>你想展示的，<span class="muted-heading">都可以从这里开始。</span></h2>
+          </div>
+          <p>不需要懂复杂的技术。<br />先说出你的想法，剩下的我们一起实现。</p>
+        </div>
+
+        <div class="service-grid">
+          {services.map((service) => (
+            <article class="service-card">
+              <div class="card-topline">
+                <span class="card-number">{service.number}</span>
+                <span class="card-arrow">↗</span>
+              </div>
+              <div class="service-symbol">{service.number === "01" ? "◈" : service.number === "02" ? "▤" : "✳"}</div>
+              <h3>{service.title}</h3>
+              <p>{service.desc}</p>
+              <div class="tag-row">
+                {service.tags.map((tag) => <span class="tag">{tag}</span>)}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="projects-section" id="projects">
+        <div class="section-wrap section-block">
           <div class="section-heading">
             <div>
-              <p class="section-kicker">SELECTED WORK</p>
-              <h2>演示作品</h2>
+              <div class="eyebrow">SELECTED CONCEPTS</div>
+              <h2>用实际效果，<span class="muted-heading">展示网站的可能性。</span></h2>
             </div>
-            <p class="section-note">
-              以下为个人练习与展示案例，用于呈现页面布局和设计方向。
-            </p>
+            <p>以下为设计演示作品，<br />用于展示不同类型网站的设计方向。</p>
           </div>
 
           <div class="project-grid">
-            {
-              projects.map((project) => (
-                <article class="project-card">
-                  <div class={`project-visual ${project.color}`}>
-                    <div class="mock-window">
-                      <div class="mock-top">
-                        <i></i><i></i><i></i>
-                      </div>
-                      <div class="mock-content">
-                        <div class="mock-label">{project.category}</div>
-                        <div class="mock-title">{project.title}</div>
-                        <div class="mock-line"></div>
-                        <div class="mock-line short"></div>
-                      </div>
-                    </div>
+            {projects.map((project) => (
+              <article class="project-card">
+                <div class={`project-preview ${project.style}`}>
+                  <div class="preview-top">
+                    <span class="preview-brand">{project.number === "01" ? "MY SPACE." : project.number === "02" ? "STUDIO / 01" : "NEW PRODUCT"}</span>
+                    <span class="preview-menu">☰</span>
                   </div>
-
-                  <div class="project-body">
-                    <div class="project-category">
-                      {project.number} / DEMO PROJECT
+                  {project.number === "01" && (
+                    <div class="preview-personal">
+                      <span class="preview-small">A LITTLE ABOUT ME</span>
+                      <div class="preview-big">Hello,<br />I'm Alex<span>.</span></div>
+                      <div class="preview-pill">EXPLORE MY WORK ↗</div>
                     </div>
+                  )}
+                  {project.number === "02" && (
+                    <div class="preview-branding">
+                      <span>DESIGN FOR</span>
+                      <div>BETTER<br />LIVING.</div>
+                      <i>Thoughtful objects. Everyday stories.</i>
+                    </div>
+                  )}
+                  {project.number === "03" && (
+                    <div class="preview-product">
+                      <div class="product-orbit"><div class="product-core"></div></div>
+                      <span>LESS NOISE.<br />MORE FOCUS.</span>
+                    </div>
+                  )}
+                  <span class="preview-index">{project.number} / 03</span>
+                </div>
+
+                <div class="project-info">
+                  <div class="project-category">{project.category}</div>
+                  <div class="project-title-row">
                     <h3>{project.title}</h3>
-                    <p>{project.description}</p>
-                    <div class="tag-list">
-                      {project.tags.map((tag) => (
-                        <span class="tag">{tag}</span>
-                      ))}
-                    </div>
+                    <span class="demo-badge">演示作品</span>
                   </div>
-                </article>
-              ))
-            }
+                  <p>{project.desc}</p>
+                </div>
+              </article>
+            ))}
           </div>
-
-          <p class="demo-notice">
-            注：当前展示为设计演示，不代表已交付的真实客户项目。
-          </p>
+          <div class="demo-notice">
+            <span>ⓘ</span>
+            当前展示内容为概念演示，并非真实客户案例。页面结构、配色和内容均可根据实际需求调整。
+          </div>
         </div>
       </section>
 
-      <section class="section" id="about">
-        <div class="container">
+      <section class="projects-section" id="technical-projects">
+  <div class="projects-container">
+    <div class="projects-heading">
+      <span class="projects-tag">TECHNICAL PROJECTS</span>
+
+      <h2>不止于网页，<br />也能理解底层技术。</h2>
+
+      <p>
+        从嵌入式硬件到控制算法，再到网页开发。
+        用实际项目积累技术经验，用清晰的设计呈现作品价值。
+      </p>
+    </div>
+
+    <div class="projects-grid">
+      <article class="project-card">
+        <div class="project-icon">🦋</div>
+        <div class="project-number">PROJECT 01</div>
+
+        <h3>仿生蝴蝶飞行控制器</h3>
+
+        <p>
+          基于 ESP32 的飞行控制项目，涉及惯性传感器数据采集、
+          舵机控制、电源设计与 PCB 集成。
+        </p>
+
+        <div class="project-tags">
+          <span>ESP32</span>
+          <span>IMU</span>
+          <span>PCB</span>
+          <span>嵌入式开发</span>
+        </div>
+        <button class="project-detail-btn" type="button" data-project="butterfly">查看项目详情 →</button>
+      </article>
+
+      <article class="project-card">
+        <div class="project-icon">🔬</div>
+        <div class="project-number">PROJECT 02</div>
+
+        <h3>糖水偏好检测装置</h3>
+
+        <p>
+          通过触摸传感器与称重模块采集实验数据，
+          结合串口通信，实现行为计数与重量变化监测。
+        </p>
+
+        <div class="project-tags">
+          <span>传感器</span>
+          <span>ADS1232</span>
+          <span>串口通信</span>
+          <span>数据采集</span>
+        </div>
+        <button class="project-detail-btn" type="button" data-project="sugar">查看项目详情 →</button>
+      </article>
+
+      <article class="project-card">
+        <div class="project-icon">🏎️</div>
+        <div class="project-number">PROJECT 03</div>
+
+        <h3>智能车控制系统</h3>
+
+        <p>
+          围绕传感器信号处理与运动控制，
+          探索 ADC 滤波、姿态融合和 PID 控制算法的应用。
+        </p>
+
+        <div class="project-tags">
+          <span>ADC 滤波</span>
+          <span>PID</span>
+          <span>姿态融合</span>
+          <span>控制算法</span>
+        </div>
+        <button class="project-detail-btn" type="button" data-project="car">查看项目详情 →</button>
+      </article>
+    </div>
+
+    <div class="projects-note">
+      注：以上为个人实践项目介绍。后续可补充实物照片、设计过程与测试结果。
+    </div>
+  </div>
+</section>
+
+      <section class="section-wrap section-block" id="pricing">
+        <div class="section-heading pricing-heading">
+          <div>
+            <div class="eyebrow">SIMPLE & TRANSPARENT</div>
+            <h2>清楚的价格，<span class="muted-heading">放心的选择。</span></h2>
+          </div>
+          <p>根据你的目标选择合适的方案。<br />具体范围与最终报价以沟通确认为准。</p>
+        </div>
+
+        <div class="pricing-grid">
+          {plans.map((plan) => (
+            <article class={`price-card ${plan.featured ? "featured" : ""}`}>
+              {plan.featured && <div class="popular-label">推荐方案</div>}
+              <div class="price-name">{plan.name}</div>
+              <p class="price-desc">{plan.desc}</p>
+              <div class="price-line">
+                <span class="currency">¥</span>
+                <span class="price-number">{plan.price}</span>
+                <span class="price-unit">起</span>
+              </div>
+              <div class="price-divider"></div>
+              <div class="feature-heading">方案包含</div>
+              <ul class="feature-list">
+                {plan.features.map((feature) => (
+                  <li><span class="feature-check">✓</span>{feature}</li>
+                ))}
+              </ul>
+              <a class={`price-button ${plan.featured ? "price-button-primary" : ""}`} href="#contact">
+                咨询此方案 <span>↗</span>
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <p class="pricing-footnote">
+          * 以上为测试参考价格。实际价格根据页面数量、功能复杂度和修改需求确定。
+          域名、第三方付费服务及额外维护费用如有需要，另行沟通。
+        </p>
+      </section>
+
+      <section class="process-section" id="process">
+        <div class="section-wrap section-block">
           <div class="section-heading">
             <div>
-              <p class="section-kicker">ABOUT & SKILLS</p>
-              <h2>关于我</h2>
+              <div class="eyebrow">HOW IT WORKS</div>
+              <h2>简单四步，<span class="muted-heading">把想法变成网站。</span></h2>
             </div>
+            <p>过程透明，每一步都提前沟通。<br />先确认需求，再开始制作。</p>
           </div>
 
-          <div class="about-grid">
-            <div class="about-copy">
-              <p>
-                你好，欢迎来到我的作品集。
-              </p>
-              <p>
-                专注于现代网站开发与部署，持续探索简洁、实用的网页设计方案。目前主要制作个人主页、作品集网站和产品展示页面。
-              </p>
-              <p>
-                这个网站既是我的学习项目，也是探索个人建站服务的第一份演示作品。
-                页面内容会随着实际项目经验不断完善。
-              </p>
-            </div>
-
-            <div class="skill-list">
-              {
-                skills.map((skill) => (
-                  <div class="skill-item">
-                    <span class="skill-name">{skill.name}</span>
-                    <span class="skill-level">{skill.level}</span>
-                  </div>
-                ))
-              }
-            </div>
+          <div class="process-grid">
+            {steps.map((step, index) => (
+              <article class="process-card">
+                <div class="process-top">
+                  <span>{step.number}</span>
+                  {index < steps.length - 1 && <span class="process-connector">⟶</span>}
+                </div>
+                <h3>{step.title}</h3>
+                <p>{step.desc}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      <section class="section" id="services">
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <p class="section-kicker">WHAT I CAN BUILD</p>
-              <h2>服务方向</h2>
-            </div>
-            <p class="section-note">
-              根据实际需求沟通页面范围、交付内容与上线方式。
-            </p>
-          </div>
-
-          <div class="service-grid">
-            <article class="service-card">
-              <span class="service-number">01 / WEBSITE</span>
-              <h3>个人主页搭建</h3>
-              <p>
-                用于展示个人简介、技能、项目经历与联系方式，
-                适合个人作品集和求职展示。
-              </p>
-            </article>
-
-            <article class="service-card">
-              <span class="service-number">02 / SHOWCASE</span>
-              <h3>展示型网站</h3>
-              <p>
-                通过清晰的页面结构展示品牌、产品或服务，
-                让访客快速了解核心信息。
-              </p>
-            </article>
-
-            <article class="service-card">
-              <span class="service-number">03 / DEPLOYMENT</span>
-              <h3>网站部署上线</h3>
-              <p>
-                协助配置网站部署、检查页面访问情况，
-                并说明后续维护与域名相关事项。
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="contact">
-        <div class="container">
-          <div class="contact-panel">
-            <div>
-              <p class="section-kicker">LET'S CONNECT</p>
-              <h2>有一个想法？<br />让我们聊聊。</h2>
-              <p>
-                如果你需要个人主页、产品展示页面或网站部署服务，
-                可以先整理好需求，再讨论合适的实现方式。
-              </p>
-            </div>
-
-            <a
-              class="button button-primary"
-              href="mailto:3573625617@qq.com"
-            >
-              发送邮件 <span>↗</span>
+      <section class="section-wrap contact-section" id="contact">
+        <div class="contact-box">
+          <div class="contact-glow"></div>
+          <div class="eyebrow">LET'S MAKE IT REAL</div>
+          <h2>你的下一份作品，<br />值得一个更好的展示方式。</h2>
+          <p>告诉我你想做什么样的网站，一起把想法变成现实。</p>
+          <div class="contact-actions">
+            <button class="button button-primary contact-button" id="open-wechat" type="button">
+              微信联系我 <span>↗</span>
+            </button>
+            <a class="button contact-form-button" href="#inquiry-form">
+              提交建站需求 <span>↓</span>
             </a>
           </div>
-          <p class="demo-notice">
-        
-          </p>
+          <div class="contact-tip">添加微信时请备注“建站”，方便我了解你的来意。</div>
         </div>
       </section>
+
+      <section class="section-wrap inquiry-section" id="inquiry-form">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">PROJECT INQUIRY</div>
+            <h2>说说你的建站想法<span class="muted-heading">，先沟通再决定。</span></h2>
+          </div>
+          <p>填写需求后直接提交，我会通过你留下的联系方式与你沟通。<br />请勿填写密码、身份证号等敏感信息。</p>
+        </div>
+        <form class="inquiry-form" id="inquiry-form-element" action="https://submit-form.com/tv6OQu4Dt" method="POST">
+          <input type="hidden" name="_subject" value="造站实验室：收到新的建站需求" />
+          <label>你想制作什么类型的网站？
+            <select name="website_type" required>
+              <option value="">请选择</option>
+              <option>个人主页</option><option>个人作品集</option><option>企业官网</option><option>产品展示页</option><option>其他</option>
+            </select>
+          </label>
+          <label>你的预算范围？
+            <select name="budget" required>
+              <option value="">请选择</option>
+              <option>100 元以内</option><option>100～300 元</option><option>300～500 元</option><option>500 元以上</option><option>暂不确定</option>
+            </select>
+          </label>
+          <label>希望什么时候完成？
+            <select name="deadline" required>
+              <option value="">请选择</option>
+              <option>3 天内</option><option>7 天内</option><option>15 天内</option><option>不着急</option>
+            </select>
+          </label>
+          <label>你的称呼或联系方式
+            <input name="contact" placeholder="填写微信号或方便联系的方式" required />
+          </label>
+          <label class="inquiry-wide">具体需求
+            <textarea name="requirements" rows="4" placeholder="例如：想做一个个人作品集，需要哪些页面、功能或风格……" required></textarea>
+          </label>
+          <div class="inquiry-actions inquiry-wide">
+            <button class="button button-primary" type="submit">提交建站需求 <span>↗</span></button>
+            <span id="inquiry-status" role="status">提交后将由 Formspark 接收。请确保联系方式填写正确。</span>
+          </div>
+        </form>
+      </section>
+
+      <dialog class="wechat-dialog" id="wechat-dialog" aria-labelledby="wechat-dialog-title">
+        <div class="wechat-dialog-content">
+          <button class="dialog-close" id="close-wechat" type="button" aria-label="关闭微信二维码">×</button>
+          <span class="projects-tag">CONTACT VIA WECHAT</span>
+          <h2 id="wechat-dialog-title">添加微信，聊聊你的建站需求</h2>
+          <p>请使用微信扫描下方二维码，添加时备注“建站”。</p>
+          <img src="/images/wechat-qr.png" alt="微信个人二维码" class="wechat-qr-image" />
+          <p class="wechat-name">微信昵称：_凌风&amp;</p>
+        </div>
+      </dialog>
+
+      <dialog class="project-dialog" id="project-dialog" aria-labelledby="dialog-title">
+        <div class="dialog-content">
+          <button class="dialog-close" id="dialog-close" type="button" aria-label="关闭项目详情">×</button>
+          <span class="projects-tag">PROJECT DETAILS</span>
+          <h2 id="dialog-title">项目详情</h2>
+          <p id="dialog-intro"></p>
+          <h3>项目内容</h3>
+          <ul id="dialog-points"></ul>
+          <p class="dialog-note">项目介绍以实际完成的工作为准；可继续补充实物照片、设计过程和测试记录。</p>
+        </div>
+      </dialog>
     </main>
 
-    <footer>
-      <div class="container footer-inner">
-        <span>© 2026 Cheng Studio · 个人作品集</span>
-        <span>Designed & built with Astro</span>
-      </div>
+    <footer class="footer section-wrap">
+      <a class="brand footer-brand" href="#home">
+        <span class="brand-icon">Z</span>
+        <span>造站实验室<span class="brand-dot">.</span></span>
+      </a>
+      <span class="footer-copy">个人网站制作与设计 · 演示项目</span>
+      <a class="back-top" href="#home">返回顶部 ↑</a>
     </footer>
+
+    <script>
+      const projectDetails = {
+        butterfly: {
+          title: "仿生蝴蝶飞行控制器",
+          intro: "结合嵌入式控制、惯性传感器和舵机驱动的实践项目。",
+          points: [
+            "以 ESP32 作为控制核心。",
+            "使用 LSM6DSRTR 惯性传感器采集运动数据。",
+            "通过舵机驱动仿生机构。",
+            "涉及 PCB 设计、电源规划与硬件集成。"
+          ]
+        },
+        sugar: {
+          title: "小鼠糖水偏好检测装置",
+          intro: "面向实验行为记录，结合触摸检测、重量采集和串口数据传输。",
+          points: [
+            "使用电容触摸传感器检测接触事件。",
+            "使用称重传感器与 ADS1232 采集重量变化。",
+            "规划数据通过 UART 传输至上位机。",
+            "可继续补充计数逻辑、标定过程和实测结果。"
+          ]
+        },
+        car: {
+          title: "智能车控制系统",
+          intro: "围绕传感器信号处理、姿态估计和运动控制开展的竞赛实践。",
+          points: [
+            "使用滑动平均等方法处理 ADC 信号。",
+            "探索互补滤波等姿态融合方法。",
+            "围绕速度与转向控制应用 PID 思路。",
+            "具体效果和指标以实际调试记录为准。"
+          ]
+        }
+      };
+
+      const dialog = document.querySelector("#project-dialog");
+      const dialogTitle = document.querySelector("#dialog-title");
+      const dialogIntro = document.querySelector("#dialog-intro");
+      const dialogPoints = document.querySelector("#dialog-points");
+      const closeButton = document.querySelector("#dialog-close");
+
+      document.querySelectorAll("[data-project]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const project = projectDetails[button.dataset.project];
+          if (!project || !(dialog instanceof HTMLDialogElement)) return;
+          dialogTitle.textContent = project.title;
+          dialogIntro.textContent = project.intro;
+          dialogPoints.replaceChildren(
+            ...project.points.map((point) => {
+              const item = document.createElement("li");
+              item.textContent = point;
+              return item;
+            })
+          );
+          dialog.showModal();
+        });
+      });
+
+      closeButton?.addEventListener("click", () => {
+        if (dialog instanceof HTMLDialogElement) dialog.close();
+      });
+
+      dialog?.addEventListener("click", (event) => {
+        if (event.target === dialog && dialog instanceof HTMLDialogElement) dialog.close();
+      });
+
+      const wechatDialog = document.querySelector("#wechat-dialog");
+      document.querySelector("#open-wechat")?.addEventListener("click", () => {
+        if (wechatDialog instanceof HTMLDialogElement) wechatDialog.showModal();
+      });
+      document.querySelector("#close-wechat")?.addEventListener("click", () => {
+        if (wechatDialog instanceof HTMLDialogElement) wechatDialog.close();
+      });
+      wechatDialog?.addEventListener("click", (event) => {
+        if (event.target === wechatDialog && wechatDialog instanceof HTMLDialogElement) wechatDialog.close();
+      });
+
+      const inquiryForm = document.querySelector("#inquiry-form-element");
+      const inquiryStatus = document.querySelector("#inquiry-status");
+      inquiryForm?.addEventListener("submit", () => {
+        if (inquiryStatus) inquiryStatus.textContent = "正在提交需求，请稍候……";
+      });
+    </script>
   </body>
 </html>
+
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0b0b10;
+    --panel: #111118;
+    --panel-light: #171720;
+    --text: #f5f4fa;
+    --muted: #a09eaf;
+    --line: rgba(255, 255, 255, 0.1);
+    --purple: #a78bfa;
+    --blue: #7c9cff;
+    --green: #86efac;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .section-wrap {
+    width: min(1160px, calc(100% - 48px));
+    margin-inline: auto;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    height: 76px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    padding: 0 max(24px, calc((100vw - 1160px) / 2));
+    border-bottom: 1px solid var(--line);
+    background: rgba(11, 11, 16, 0.88);
+    backdrop-filter: blur(18px);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    font-size: 17px;
+    font-weight: 750;
+    letter-spacing: -0.5px;
+  }
+
+  .brand-icon {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #a78bfa, #6286ff);
+    color: white;
+    font-size: 19px;
+    font-weight: 800;
+  }
+
+  .brand-dot {
+    color: var(--purple);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    color: #c4c1d0;
+    font-size: 13px;
+  }
+
+  .nav a,
+  .back-top {
+    transition: color 0.2s ease;
+  }
+
+  .nav a:hover,
+  .back-top:hover {
+    color: var(--purple);
+  }
+
+  .nav-cta {
+    padding: 9px 15px;
+    border: 1px solid rgba(167, 139, 250, 0.45);
+    border-radius: 9px;
+    color: #d9ccff;
+    font-size: 13px;
+    transition: background 0.2s ease;
+  }
+
+  .nav-cta:hover {
+    background: rgba(167, 139, 250, 0.12);
+  }
+
+  .hero {
+    position: relative;
+    display: grid;
+    min-height: 635px;
+    grid-template-columns: 1.02fr 0.98fr;
+    align-items: center;
+    gap: 50px;
+    padding-top: 68px;
+    padding-bottom: 80px;
+  }
+
+  .hero-copy {
+    position: relative;
+    z-index: 2;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #b6a2ff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #86efac;
+    box-shadow: 0 0 12px rgba(134, 239, 172, 0.65);
+  }
+
+  h1 {
+    margin: 25px 0 22px;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 780;
+    letter-spacing: -3px;
+    line-height: 1.28;
+  }
+
+  .gradient-text {
+    background: linear-gradient(100deg, #c4b5fd 5%, #8ca7ff 85%);
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero-desc {
+    max-width: 500px;
+    margin: 0;
+    color: #aaa7b8;
+    font-size: 15px;
+    line-height: 2;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px;
+    margin-top: 31px;
+  }
+
+  .button {
+    display: inline-flex;
+    min-height: 46px;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 0 20px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 650;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+  }
+
+  .button-primary {
+    background: linear-gradient(110deg, #9273f6, #6387fa);
+    color: white;
+    box-shadow: 0 7px 28px rgba(120, 100, 245, 0.2);
+  }
+
+  .button-primary:hover {
+    background: linear-gradient(110deg, #a48aff, #7b9bff);
+  }
+
+  .button-secondary {
+    border-color: var(--line);
+    background: rgba(255, 255, 255, 0.025);
+    color: #e0deeb;
+  }
+
+  .button-secondary:hover {
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+  .hero-note {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 26px;
+    color: #a8a5b6;
+    font-size: 11px;
+  }
+
+  .check {
+    color: var(--green);
+  }
+
+  .note-separator {
+    margin-inline: 2px;
+    color: #4d4b59;
+  }
+
+  .hero-visual {
+    position: relative;
+    min-width: 0;
+    padding: 28px 8px;
+  }
+
+  .visual-glow {
+    position: absolute;
+    top: 8%;
+    left: 12%;
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(137, 92, 246, 0.2), rgba(74, 119, 255, 0.15));
+    filter: blur(70px);
+  }
+
+  .browser-window {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.17);
+    border-radius: 14px;
+    background: #14141d;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.4);
+    transform: perspective(1200px) rotateY(-5deg) rotateX(2deg);
+  }
+
+  .browser-bar {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 14px;
+    border-bottom: 1px solid var(--line);
+    background: #191922;
+  }
+
+  .browser-dots {
+    display: flex;
+    gap: 5px;
+  }
+
+  .browser-dots i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #5a5668;
+  }
+
+  .browser-dots i:first-child {
+    background: #f28d9a;
+  }
+
+  .browser-dots i:nth-child(2) {
+    background: #f0c879;
+  }
+
+  .browser-dots i:nth-child(3) {
+    background: #7bd8a0;
+  }
+
+  .browser-address {
+    padding: 2px 35px;
+    border-radius: 5px;
+    background: #101017;
+    color: #777487;
+    font-size: 9px;
+  }
+
+  .browser-menu {
+    color: #8e8a9f;
+  }
+
+  .mock-page {
+    position: relative;
+    overflow: hidden;
+    min-height: 340px;
+    padding: 22px 25px;
+    background:
+      radial-gradient(ellipse at 100% 20%, rgba(117, 90, 245, 0.15), transparent 45%),
+      #101018;
+  }
+
+  .mock-nav,
+  .mock-footer {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .mock-logo {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+
+  .mock-links {
+    color: #aaa6b8;
+    font-size: 7px;
+  }
+
+  .mock-content {
+    position: relative;
+    z-index: 2;
+    margin-top: 58px;
+  }
+
+  .mock-label {
+    color: #a995ff;
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+
+  .mock-heading {
+    margin-top: 12px;
+    font-size: clamp(30px, 3.3vw, 42px);
+    font-weight: 800;
+    letter-spacing: -1.8px;
+    line-height: 1.1;
+  }
+
+  .mock-heading span {
+    color: #a995ff;
+  }
+
+  .mock-line {
+    width: 38px;
+    height: 3px;
+    margin-top: 18px;
+    border-radius: 3px;
+    background: #9b80ff;
+  }
+
+  .mock-content p {
+    color: #a5a1b4;
+    font-size: 9px;
+  }
+
+  .mock-button {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 7px 10px;
+    border: 1px solid rgba(167, 139, 250, 0.55);
+    border-radius: 4px;
+    color: #d3c6ff;
+    font-size: 7px;
+  }
+
+  .mock-orb {
+    position: absolute;
+    z-index: 1;
+    border: 1px solid rgba(170, 147, 255, 0.32);
+    border-radius: 50%;
+  }
+
+  .orb-one {
+    top: 100px;
+    right: -42px;
+    width: 190px;
+    height: 190px;
+    background: radial-gradient(circle at 35% 35%, rgba(170, 139, 250, 0.23), rgba(84, 82, 177, 0.04) 65%);
+  }
+
+  .orb-two {
+    top: 143px;
+    right: 8px;
+    width: 112px;
+    height: 112px;
+    border-color: rgba(115, 153, 255, 0.45);
+  }
+
+  .mock-footer {
+    position: absolute;
+    right: 25px;
+    bottom: 17px;
+    left: 25px;
+    color: #777488;
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+
+  .float-card {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 11px;
+    background: rgba(25, 24, 36, 0.92);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(14px);
+  }
+
+  .float-card-top {
+    top: 0;
+    right: -8px;
+  }
+
+  .float-card-bottom {
+    bottom: 4px;
+    left: -18px;
+  }
+
+  .float-icon {
+    display: grid;
+    width: 31px;
+    height: 31px;
+    flex-shrink: 0;
+    place-items: center;
+    border-radius: 8px;
+    font-size: 17px;
+  }
+
+  .purple-icon {
+    background: rgba(167, 139, 250, 0.16);
+    color: #c5b5ff;
+  }
+
+  .green-icon {
+    background: rgba(134, 239, 172, 0.12);
+    color: #86efac;
+  }
+
+  .float-card strong,
+  .float-card small {
+    display: block;
+  }
+
+  .float-card strong {
+    font-size: 11px;
+  }
+
+  .float-card small {
+    margin-top: 2px;
+    color: #a19db1;
+    font-size: 9px;
+  }
+
+  .visual-caption {
+    position: absolute;
+    right: 0;
+    bottom: -8px;
+    color: #6d687e;
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .trust-strip {
+    border-block: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.018);
+  }
+
+  .trust-inner {
+    display: flex;
+    min-height: 68px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    color: #aaa7b7;
+    font-size: 12px;
+  }
+
+  .trust-divider {
+    color: #9e8aff;
+  }
+
+  .section-block {
+    padding-top: 105px;
+    padding-bottom: 105px;
+  }
+
+  .section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 25px;
+    margin-bottom: 35px;
+  }
+
+  .section-heading h2 {
+    margin: 12px 0 0;
+    font-size: clamp(25px, 3vw, 35px);
+    font-weight: 750;
+    letter-spacing: -1.2px;
+    line-height: 1.45;
+  }
+
+  .muted-heading {
+    color: #777487;
+  }
+
+  .section-heading > p {
+    flex-shrink: 0;
+    margin: 0 0 3px;
+    color: #9996a8;
+    font-size: 12px;
+    line-height: 1.9;
+  }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+  }
+
+  .service-card {
+    min-height: 255px;
+    padding: 23px;
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    background: linear-gradient(145deg, #15151e, #101016);
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(167, 139, 250, 0.45);
+  }
+
+  .card-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-number {
+    color: #8e8a9f;
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  .card-arrow {
+    color: #8e8a9f;
+    font-size: 18px;
+  }
+
+  .service-symbol {
+    margin-top: 20px;
+    color: #b6a2ff;
+    font-size: 25px;
+  }
+
+  .service-card h3 {
+    margin: 9px 0;
+    font-size: 19px;
+  }
+
+  .service-card p {
+    min-height: 48px;
+    margin: 0;
+    color: #a09cad;
+    font-size: 12px;
+    line-height: 1.9;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 17px;
+  }
+
+  .tag {
+    padding: 3px 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    color: #c0bbd1;
+    font-size: 10px;
+  }
+
+  .projects-section,
+  .process-section {
+    border-block: 1px solid var(--line);
+    background: #0e0e14;
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .project-card {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    background: #13131b;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(167, 139, 250, 0.4);
+  }
+
+  .project-preview {
+    position: relative;
+    display: flex;
+    min-height: 240px;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 17px;
+  }
+
+  .project-preview.purple {
+    background: radial-gradient(ellipse at 80% 75%, #5842a5, transparent 55%), #201d35;
+  }
+
+  .project-preview.blue {
+    background: radial-gradient(ellipse at 80% 75%, #325a81, transparent 60%), #182a36;
+  }
+
+  .project-preview.green {
+    background: radial-gradient(ellipse at 80% 75%, #346c59, transparent 60%), #192a27;
+  }
+
+  .preview-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .preview-menu {
+    font-size: 14px;
+  }
+
+  .preview-personal {
+    margin-top: 42px;
+  }
+
+  .preview-small {
+    color: #d1c6ff;
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+
+  .preview-big {
+    margin-top: 7px;
+    font-size: 35px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.15;
+  }
+
+  .preview-big span {
+    color: #b5a0ff;
+  }
+
+  .preview-pill {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 6px 9px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 4px;
+    font-size: 7px;
+    letter-spacing: 0.5px;
+  }
+
+  .preview-branding {
+    margin-top: 39px;
+  }
+
+  .preview-branding > span {
+    color: #b6d9d1;
+    font-size: 8px;
+    letter-spacing: 3px;
+  }
+
+  .preview-branding > div {
+    margin-top: 6px;
+    font-family: Georgia, serif;
+    font-size: 37px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 0.98;
+  }
+
+  .preview-branding > i {
+    display: block;
+    margin-top: 15px;
+    color: #b4c9c4;
+    font-family: Georgia, serif;
+    font-size: 9px;
+  }
+
+  .preview-product {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-top: 20px;
+  }
+
+  .preview-product > span {
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.3;
+  }
+
+  .product-orbit {
+    display: grid;
+    width: 105px;
+    height: 105px;
+    flex-shrink: 0;
+    place-items: center;
+    border: 1px solid rgba(190, 255, 225, 0.5);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(113, 230, 178, 0.13);
+  }
+
+  .product-core {
+    width: 62px;
+    height: 62px;
+    border-radius: 45% 55% 61% 39%;
+    background: linear-gradient(135deg, #b3f4cf, #61bd9b 60%, #376e69);
+    box-shadow: 0 0 28px rgba(113, 230, 178, 0.28);
+  }
+
+  .preview-index {
+    position: absolute;
+    right: 17px;
+    bottom: 12px;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .project-info {
+    padding: 19px;
+  }
+
+  .project-category {
+    color: #9d95b7;
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .project-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 9px;
+  }
+
+  .project-title-row h3 {
+    margin: 0;
+    font-size: 17px;
+  }
+
+  .demo-badge {
+    flex-shrink: 0;
+    padding: 2px 7px;
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    border-radius: 5px;
+    color: #bcaaff;
+    font-size: 9px;
+  }
+
+  .project-info p {
+    margin: 9px 0 0;
+    color: #9d99aa;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  .demo-notice {
+    display: flex;
+    align-items: start;
+    gap: 9px;
+    margin-top: 20px;
+    color: #898596;
+    font-size: 11px;
+  }
+
+  .demo-notice span {
+    color: #b4a2ff;
+  }
+
+  .pricing-heading {
+    margin-bottom: 40px;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 17px;
+  }
+
+  .price-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 27px 23px 23px;
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    background: linear-gradient(145deg, #14141c, #101016);
+  }
+
+  .price-card.featured {
+    border-color: rgba(167, 139, 250, 0.7);
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(133, 101, 238, 0.13), transparent 60%),
+      #15141f;
+    box-shadow: 0 0 40px rgba(117, 87, 230, 0.08);
+  }
+
+  .popular-label {
+    position: absolute;
+    top: -1px;
+    right: 20px;
+    padding: 5px 12px;
+    border-radius: 0 0 7px 7px;
+    background: linear-gradient(110deg, #9b7cf5, #718cfb);
+    color: white;
+    font-size: 10px;
+    font-weight: 650;
+  }
+
+  .price-name {
+    font-size: 17px;
+    font-weight: 700;
+  }
+
+  .price-desc {
+    min-height: 42px;
+    margin: 8px 0 14px;
+    color: #9e9aab;
+    font-size: 11px;
+    line-height: 1.8;
+  }
+
+  .price-line {
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+  }
+
+  .currency {
+    font-size: 18px;
+    font-weight: 650;
+  }
+
+  .price-number {
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.2;
+  }
+
+  .price-unit {
+    color: #aaa6b8;
+    font-size: 12px;
+  }
+
+  .price-divider {
+    height: 1px;
+    margin: 22px 0 18px;
+    background: var(--line);
+  }
+
+  .feature-heading {
+    margin-bottom: 12px;
+    color: #e4e0ef;
+    font-size: 12px;
+    font-weight: 650;
+  }
+
+  .feature-list {
+    display: grid;
+    flex: 1;
+    gap: 12px;
+    margin: 0 0 25px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .feature-list li {
+    display: flex;
+    align-items: start;
+    gap: 9px;
+    color: #b0acbd;
+    font-size: 11px;
+  }
+
+  .feature-check {
+    color: #9e8aff;
+  }
+
+  .price-button {
+    display: flex;
+    min-height: 43px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 8px;
+    color: #e7e3f2;
+    font-size: 12px;
+    transition: background 0.2s ease;
+  }
+
+  .price-button:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .price-button-primary {
+    border-color: transparent;
+    background: linear-gradient(110deg, #9273f6, #6387fa);
+    color: white;
+  }
+
+  .price-button-primary:hover {
+    background: linear-gradient(110deg, #a48aff, #7b9bff);
+  }
+
+  .pricing-footnote {
+    margin-top: 20px;
+    color: #827e90;
+    font-size: 10px;
+    line-height: 1.9;
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .process-card {
+    padding: 22px 20px;
+    border: 1px solid var(--line);
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.018);
+  }
+
+  .process-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #b6a2ff;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  .process-connector {
+    color: #575267;
+    font-size: 17px;
+  }
+
+  .process-card h3 {
+    margin: 25px 0 8px;
+    font-size: 16px;
+  }
+
+  .process-card p {
+    margin: 0;
+    color: #9995a8;
+    font-size: 11px;
+    line-height: 1.9;
+  }
+
+  .contact-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .contact-form-button {
+    margin-top: 27px;
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    color: #e8e4ff;
+    background: rgba(255, 255, 255, 0.035);
+  }
+
+  .inquiry-section { padding-top: 45px; padding-bottom: 55px; }
+  .inquiry-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    padding: 25px;
+    border: 1px solid rgba(167, 139, 250, 0.18);
+    border-radius: 16px;
+    background: #111119;
+  }
+  .inquiry-form label { display: flex; flex-direction: column; gap: 9px; color: #d9d6e5; font-size: 12px; }
+  .inquiry-form input, .inquiry-form select, .inquiry-form textarea, .inquiry-summary {
+    width: 100%; box-sizing: border-box; border: 1px solid #302d3d; border-radius: 9px;
+    padding: 12px 13px; color: #f5f4fa; background: #0c0c12; font: inherit; font-size: 13px;
+  }
+  .inquiry-form select { min-height: 43px; }
+  .inquiry-form textarea { resize: vertical; line-height: 1.7; }
+  .inquiry-form input:focus, .inquiry-form select:focus, .inquiry-form textarea:focus { outline: 2px solid rgba(167, 139, 250, .55); outline-offset: 1px; }
+  .inquiry-wide { grid-column: 1 / -1; }
+  .inquiry-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
+  .inquiry-actions span { color: #9691a8; font-size: 11px; line-height: 1.7; }
+  .inquiry-summary { margin: 0; }
+  .inquiry-copy { justify-self: start; cursor: pointer; }
+  .wechat-dialog, .project-dialog {
+    width: min(92vw, 480px); max-height: 88vh; overflow: auto; padding: 0; color: #f5f4fa;
+    border: 1px solid rgba(167, 139, 250, .3); border-radius: 18px; background: #111119;
+  }
+  .wechat-dialog::backdrop, .project-dialog::backdrop { background: rgba(3, 3, 8, .78); backdrop-filter: blur(5px); }
+  .wechat-dialog-content { position: relative; padding: 32px 25px; text-align: center; }
+  .wechat-dialog-content h2 { margin: 17px 0 10px; font-size: 22px; line-height: 1.5; }
+  .wechat-dialog-content p { color: #a6a2b4; font-size: 12px; line-height: 1.8; }
+  .wechat-qr-image { display: block; width: min(100%, 320px); height: auto; margin: 20px auto 10px; border-radius: 8px; background: white; }
+  .wechat-dialog-content .wechat-name { color: #e7e2ff; }
+
+  .contact-section {
+    padding-top: 80px;
+    padding-bottom: 85px;
+  }
+
+  .contact-box {
+    position: relative;
+    overflow: hidden;
+    padding: 70px 24px;
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    border-radius: 17px;
+    background:
+      radial-gradient(ellipse at 15% 110%, rgba(107, 80, 230, 0.17), transparent 45%),
+      radial-gradient(ellipse at 90% 0%, rgba(79, 110, 231, 0.15), transparent 45%),
+      #111119;
+    text-align: center;
+  }
+
+  .contact-box > *:not(.contact-glow) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-box .eyebrow {
+    justify-content: center;
+  }
+
+  .contact-box h2 {
+    margin: 17px 0;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 750;
+    letter-spacing: -1.5px;
+    line-height: 1.45;
+  }
+
+  .contact-box > p {
+    margin: 0;
+    color: #a6a2b4;
+    font-size: 13px;
+  }
+
+  .contact-button {
+    margin-top: 27px;
+  }
+
+  .contact-tip {
+    margin-top: 15px;
+    color: #777487;
+    font-size: 10px;
+  }
+
+  .contact-glow {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 300px;
+    height: 180px;
+    border-radius: 50%;
+    background: rgba(128, 93, 241, 0.13);
+    filter: blur(80px);
+    transform: translateX(-50%);
+  }
+
+  .footer {
+    display: flex;
+    min-height: 90px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-top: 1px solid var(--line);
+  }
+
+  .footer-brand {
+    font-size: 14px;
+  }
+
+  .footer-brand .brand-icon {
+    width: 29px;
+    height: 29px;
+    border-radius: 9px;
+    font-size: 15px;
+  }
+
+  .footer-copy,
+  .back-top {
+    color: #898596;
+    font-size: 11px;
+  }
+
+  @media (min-width: 1400px) {
+    .hero {
+      min-height: 700px;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .topbar {
+      gap: 15px;
+    }
+
+    .nav {
+      gap: 17px;
+    }
+
+    .hero {
+      grid-template-columns: 1fr 0.9fr;
+      gap: 25px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 5vw, 53px);
+    }
+
+    .float-card-top {
+      right: -5px;
+    }
+
+    .float-card-bottom {
+      left: -5px;
+    }
+
+    .section-heading h2 {
+      font-size: 28px;
+    }
+
+    .project-preview {
+      min-height: 215px;
+    }
+
+    .preview-big {
+      font-size: 30px;
+    }
+
+    .product-orbit {
+      width: 75px;
+      height: 75px;
+    }
+
+    .product-core {
+      width: 45px;
+      height: 45px;
+    }
+
+    .preview-product > span {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .section-wrap {
+      width: min(100% - 36px, 540px);
+    }
+
+    .topbar {
+      height: 64px;
+      padding-inline: 18px;
+    }
+
+    .brand {
+      gap: 8px;
+      font-size: 15px;
+    }
+
+    .brand-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+    }
+
+    .nav {
+      display: none;
+    }
+
+    .nav-cta {
+      padding: 7px 11px;
+      font-size: 11px;
+    }
+
+    .hero {
+      min-height: auto;
+      grid-template-columns: 1fr;
+      gap: 26px;
+      padding-top: 65px;
+      padding-bottom: 62px;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: clamp(38px, 10vw, 52px);
+      letter-spacing: -2px;
+    }
+
+    .hero-desc {
+      font-size: 13px;
+    }
+
+    .hero-note {
+      gap: 6px;
+      font-size: 10px;
+    }
+
+    .hero-visual {
+      margin-top: 15px;
+      padding: 15px 5px 25px;
+    }
+
+    .browser-window {
+      transform: none;
+    }
+
+    .mock-page {
+      min-height: 300px;
+      padding: 18px;
+    }
+
+    .mock-content {
+      margin-top: 48px;
+    }
+
+    .mock-heading {
+      font-size: 38px;
+    }
+
+    .float-card-top {
+      top: -3px;
+      right: -2px;
+    }
+
+    .float-card-bottom {
+      bottom: 0;
+      left: -2px;
+    }
+
+    .float-card {
+      gap: 7px;
+      padding: 9px 11px;
+    }
+
+    .float-icon {
+      width: 26px;
+      height: 26px;
+      font-size: 14px;
+    }
+
+    .float-card strong {
+      font-size: 10px;
+    }
+
+    .float-card small {
+      font-size: 8px;
+    }
+
+    .visual-caption {
+      right: 0;
+      bottom: -9px;
+      font-size: 8px;
+    }
+
+    .trust-inner {
+      justify-content: center;
+      gap: 8px 13px;
+      padding-block: 17px;
+      font-size: 10px;
+    }
+
+    .trust-divider {
+      font-size: 9px;
+    }
+
+    .section-block {
+      padding-top: 70px;
+      padding-bottom: 70px;
+    }
+
+    .section-heading {
+      display: block;
+      margin-bottom: 27px;
+    }
+
+    .section-heading h2 {
+      font-size: 27px;
+      letter-spacing: -0.8px;
+    }
+
+    .section-heading > p {
+      margin-top: 12px;
+      font-size: 11px;
+    }
+
+    .service-grid,
+    .project-grid,
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .service-card {
+      min-height: auto;
+      padding: 21px;
+    }
+
+    .service-card p {
+      min-height: auto;
+    }
+
+    .project-preview {
+      min-height: 255px;
+      padding: 20px;
+    }
+
+    .preview-personal {
+      margin-top: 45px;
+    }
+
+    .preview-big {
+      font-size: 38px;
+    }
+
+    .preview-branding {
+      margin-top: 42px;
+    }
+
+    .preview-branding > div {
+      font-size: 42px;
+    }
+
+    .preview-product {
+      justify-content: space-around;
+    }
+
+    .product-orbit {
+      width: 105px;
+      height: 105px;
+    }
+
+    .product-core {
+      width: 62px;
+      height: 62px;
+    }
+
+    .preview-product > span {
+      font-size: 22px;
+    }
+
+    .price-card {
+      padding: 25px 22px 22px;
+    }
+
+    .price-desc {
+      min-height: auto;
+    }
+
+    .feature-list {
+      gap: 10px;
+    }
+
+    .pricing-footnote {
+      font-size: 10px;
+    }
+
+    .process-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .process-card {
+      padding: 17px 14px;
+    }
+
+    .process-card h3 {
+      margin-top: 19px;
+      font-size: 14px;
+    }
+
+    .process-card p {
+      font-size: 10px;
+    }
+
+    .process-connector {
+      font-size: 13px;
+    }
+
+    .contact-section {
+      padding-top: 35px;
+      padding-bottom: 55px;
+    }
+
+    .contact-box {
+      padding: 52px 18px;
+    }
+
+    .contact-box h2 {
+      font-size: 29px;
+      letter-spacing: -0.8px;
+    }
+
+    .contact-box > p {
+      font-size: 11px;
+    }
+
+    .footer {
+      min-height: 80px;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-block: 18px;
+    }
+
+    .footer-copy {
+      order: 3;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .section-wrap {
+      width: calc(100% - 28px);
+    }
+
+    .hero-actions {
+      gap: 8px;
+    }
+
+    .button {
+      gap: 8px;
+      padding-inline: 13px;
+      font-size: 11px;
+    }
+
+    .hero-note {
+      font-size: 9px;
+    }
+
+    .mock-page {
+      min-height: 270px;
+    }
+
+    .mock-heading {
+      font-size: 32px;
+    }
+
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  /* ===== 技术项目展示区 ===== */
+
+.projects-section {
+  padding: 100px 24px;
+  background: #0b0b0f;
+}
+
+.projects-container {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.projects-heading {
+  margin-bottom: 42px;
+}
+
+.projects-tag {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: #a78bfa;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.projects-heading h2 {
+  margin: 0 0 16px;
+  color: #fff;
+  font-size: clamp(30px, 5vw, 46px);
+  line-height: 1.2;
+}
+
+.projects-heading p {
+  max-width: 620px;
+  color: #a1a1aa;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.projects-container .project-card {
+  padding: 28px;
+  border: 1px solid #27272a;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #18181b, #101014);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.projects-container .project-card:hover {
+  transform: translateY(-6px);
+  border-color: #8b5cf6;
+}
+
+.project-icon {
+  display: flex;
+  width: 54px;
+  height: 54px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  border: 1px solid #3f3f46;
+  border-radius: 16px;
+  background: #27202f;
+  font-size: 27px;
+}
+
+.project-number {
+  margin-bottom: 10px;
+  color: #a78bfa;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.projects-container .project-card h3 {
+  margin: 0 0 14px;
+  color: #fafafa;
+  font-size: 21px;
+}
+
+.projects-container .project-card p {
+  min-height: 84px;
+  margin: 0 0 22px;
+  color: #a1a1aa;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.project-tags span {
+  padding: 6px 10px;
+  border: 1px solid #3f3f46;
+  border-radius: 7px;
+  color: #d4d4d8;
+  font-size: 12px;
+}
+
+.projects-note {
+  margin-top: 26px;
+  color: #71717a;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+@media (max-width: 850px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 580px) {
+  .projects-section {
+    padding: 68px 20px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-container .project-card p {
+    min-height: auto;
+  }
+}
+
+
+  .project-detail-btn {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 9px 0;
+    border: 0;
+    background: transparent;
+    color: #c4b5fd;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .project-detail-btn:hover { color: #fff; }
+  .project-detail-btn:focus-visible { outline: 2px solid #a78bfa; outline-offset: 4px; }
+
+  .project-dialog {
+    width: min(560px, calc(100% - 32px));
+    max-height: 80vh;
+    padding: 0;
+    overflow: auto;
+    border: 1px solid #3f3f46;
+    border-radius: 20px;
+    background: #18181b;
+    color: #fafafa;
+  }
+  .project-dialog::backdrop { background: rgb(0 0 0 / 75%); backdrop-filter: blur(5px); }
+  .dialog-content { position: relative; padding: 36px; }
+  .dialog-content h2 { margin: 20px 0; font-size: 27px; }
+  .dialog-content h3 { margin-top: 28px; }
+  .dialog-content p, .dialog-content li { color: #a1a1aa; font-size: 14px; line-height: 1.9; }
+  .dialog-content li { margin-bottom: 8px; }
+  .dialog-close {
+    position: absolute; top: 18px; right: 20px; width: 36px; height: 36px;
+    border: 1px solid #3f3f46; border-radius: 10px; background: #27272a;
+    color: #fff; font-size: 25px; cursor: pointer;
+  }
+  .dialog-note { margin-top: 24px; font-size: 12px !important; }
+  @media (max-width: 580px) { .dialog-content { padding: 28px 22px; } }
+</style>
